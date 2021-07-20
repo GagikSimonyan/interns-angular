@@ -1,0 +1,26 @@
+.main {
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 10px;
+
+  th {
+    background-color: lightcoral;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px;
+    color: #000000;
+    border: 1px solid #000;
+  }
+}
+
+.add-btn {
+  margin-bottom: 10px;
+}
+
+.showPopup {
+  display: block;
+}

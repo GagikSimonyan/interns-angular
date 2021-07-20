@@ -1,0 +1,55 @@
+.popup__wrap{
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: none;
+}
+
+.showPopup{
+  display: block;
+}
+
+.popup{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  min-height: 400px;
+  background-color: #beb8b8;
+  padding: 38px 40px;
+  border-radius: 15px;
+}
+
+.form {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.form input, .cancel, .save{
+  height: 50px;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-bottom: 15px;
+  border: none;
+  padding: 0 20px;
+  color: #4b4b4b;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+input::placeholder {
+  font-size: 16px;
+  color: #000;
+}
+
+.cancel{
+  background-color: red;
+}
+
+.save{
+  background-color:green;
+}
