@@ -1,28 +1,19 @@
 <main class="main">
-  <button class="add-btn" (click)="showPopup = !showPopup" >Add</button>
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Email</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody class="tbody">
-      <tr 
-        app-intern-item
-        *ngFor="let intern of interns" 
-        [intern]="intern"
-      ></tr>
-    </tbody>
-  </table>
-
-  <!-- <p *ngIf="showPopup; else lorem10">Lorem ipsum dolor sit amet.</p> -->
-  <!-- <ng-template #lorem10>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, recusandae.</p>
-  </ng-template> -->
+    <button class="add-btn" (click)="showPopup = !showPopup">Add</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr app-intern-item *ngFor="let intern of interns" [intern]="intern"></tr>
+        </tbody>
+    </table>
 </main>
-<app-popup *ngIf="showPopup" class="showPopup"></app-popup>
+<app-popup *ngIf="showPopup" [class]="showPopup ? 'showPopup' : 'hidePopup'" (newItemEvent)="closeAddInternPopUp()"></app-popup>

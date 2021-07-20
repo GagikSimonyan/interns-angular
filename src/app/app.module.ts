@@ -10,19 +10,16 @@ import { MainModule } from './main/main.module';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-  ],
+  declarations: [AppComponent, FooterComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
     HeaderModule,
-    MainModule
+    MainModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
