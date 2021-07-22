@@ -14,9 +14,8 @@ export interface Iintern {
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-
   public showPopup: boolean = false;
-
+  public editableIntern!: Iintern;
   public interns: Iintern[] = [];
 
   constructor(private internService: InternService) {}
@@ -25,13 +24,16 @@ export class MainComponent implements OnInit {
     this.internService.getAllInterns().subscribe((interns) => {
       this.interns = interns;
     });
-    this.internService.addIntern$.subscribe((intern: Iintern) => {
-      this.interns.push(intern);
+    this.internService.intern$.subscribe((interns: Array<Iintern>) => {
+      this.interns = interns;
     });
-    // this.internService.deleteIntern(id)
   }
 
   closeAddInternPopUp() {
     this.showPopup = false;
+  }
+  openAddInternPopUp(intern: Iintern) {
+    this.editableIntern = { ...intern };
+    this.showPopup = true;
   }
 }

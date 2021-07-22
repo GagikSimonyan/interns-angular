@@ -1,42 +1,45 @@
-import {
-  Component,
-  OnInit,
-  Output,
-  EventEmitter,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { InternService } from '../intern.service';
+import { Iintern } from '../main.component';
 
 @Component({
   selector: 'app-popup',
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss'],
 })
-
 export class PopupComponent implements OnInit {
+  @Input() editableIntern!: Iintern;
+  isEditableMode: boolean = false;
+  public intern: Iintern = {
+    name: '',
+    email: '',
+    surname: '',
+  };
 
-  @ViewChild('name') name!: ElementRef;
-  @ViewChild('email') email!: ElementRef;
-  @ViewChild('surname') surname!: ElementRef;
   @Output() newItemEvent = new EventEmitter<boolean>();
 
   constructor(private internService: InternService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.editableIntern) {
+      this.intern = this.editableIntern;
+      this.isEditableMode = true;
+    }
+  }
 
   closePopUp() {
     this.newItemEvent.emit(false);
   }
 
-  addIntern() {
-    const name = this.name.nativeElement.value;
-    const email = this.email.nativeElement.value;
-    const surname = this.surname.nativeElement.value;
-    this.internService
-      .addIntern({ name, email, surname })
-      .subscribe((intern) => {
+  saveIntern() {
+    if (this.isEditableMode) {
+      this.internService.updateIntern(this.intern).subscribe(() => {
         this.closePopUp();
       });
+    } else {
+      this.internService.addIntern(this.intern).subscribe((intern) => {
+        this.closePopUp();
+      });
+    }
   }
 }

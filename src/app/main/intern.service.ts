@@ -5,34 +5,48 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class InternService {
-  
   private readonly BASE_URL: string = 'http://localhost:3000/interns/';
-  addIntern$ = new Subject<Iintern>();
-  updateIntern$ = new Subject<Iintern>();
 
+  intern$ = new Subject<Array<Iintern>>();
+  interns!: Array<Iintern>;
   constructor(private http: HttpClient) {}
 
   deleteIntern(id: number) {
-    return this.http.delete(`${this.BASE_URL + id}`);
+    const request = this.http.delete(`${this.BASE_URL + id}`);
+    request.subscribe(() => {
+      this.interns = this.interns.filter((item) => item.id !== id);
+      this.intern$.next(this.interns);
+    });
+    return request;
   }
 
   addIntern(intern: Iintern) {
-    const request = this.http.post(this.BASE_URL, intern);
+    const request = this.http.post<Iintern>(this.BASE_URL, intern);
     request.subscribe((intern) => {
-      this.addIntern$.next(<Iintern>intern);
+      this.interns.push(intern);
+      this.intern$.next(this.interns);
     });
     return request;
   }
 
   updateIntern(intern: Iintern) {
-    const request = this.http.put(`${this.BASE_URL}${intern.id}`, intern);
-    request.subscribe((intern) => {
-      this.updateIntern$.next(<Iintern>intern)
+    const request = this.http.put<Iintern>(
+      `${this.BASE_URL}${intern.id}`,
+      intern
+    );
+    request.subscribe((intern: Iintern) => {
+      const index = this.interns.findIndex((item) => item.id === intern.id);
+      this.interns[index] = intern;
+      this.intern$.next(this.interns);
     });
     return request;
   }
 
   getAllInterns() {
-    return this.http.get<Iintern[]>(this.BASE_URL);
+    const request = this.http.get<Iintern[]>(this.BASE_URL);
+    request.subscribe((interns: Array<Iintern>) => {
+      this.interns = interns;
+    });
+    return request;
   }
 }

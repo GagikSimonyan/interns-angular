@@ -1,5 +1,5 @@
 <main class="main">
-    <button class="add-btn" (click)="showPopup = !showPopup">Add</button>
+    <button class="add-btn" (click)="showPopup = true">Add</button>
     <table>
         <thead>
             <tr>
@@ -12,8 +12,8 @@
             </tr>
         </thead>
         <tbody class="tbody">
-            <tr app-intern-item *ngFor="let intern of interns" [intern]="intern"></tr>
+            <tr app-intern-item *ngFor="let intern of interns" [intern]="intern" (newItemEvent)="openAddInternPopUp(intern)"></tr>
         </tbody>
     </table>
 </main>
-<app-popup *ngIf="showPopup" [class]="showPopup ? 'showPopup' : 'hidePopup'" (newItemEvent)="closeAddInternPopUp()"></app-popup>
+<app-popup *ngIf="showPopup" [class]="showPopup ? 'showPopup' : 'hidePopup'" (newItemEvent)="closeAddInternPopUp()" [editableIntern]="editableIntern"></app-popup>

@@ -1,13 +1,13 @@
 <div class="popup__wrap">
     <div class="popup" id="popup">
         <form class="form">
-            <input #name type="text" name="name" id="name" placeholder="Enter name" />
-            <input #surname type="text" name="surname" id="surname" placeholder="Enter surname" />
-            <input #email type="email" name="email" id="email" placeholder="Enter email" />
+            <input type="text" name="name" id="name" placeholder="Enter name" [(ngModel)]="intern.name" />
+            <input type="text" name="surname" id="surname" placeholder="Enter surname" [(ngModel)]="intern.surname" />
+            <input type="email" name="email" id="email" placeholder="Enter email" [(ngModel)]="intern.email" />
             <button type="button" class="cancel" (click)="closePopUp()">
         Cancel
       </button>
-            <button type="button" class="save" (click)="addIntern()">Save</button>
+            <button type="button" class="save" (click)="saveIntern()">Save</button>
         </form>
     </div>
 </div>
