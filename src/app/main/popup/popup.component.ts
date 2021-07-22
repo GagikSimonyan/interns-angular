@@ -3,7 +3,6 @@ import {
   OnInit,
   Output,
   EventEmitter,
-  Input,
   ViewChild,
   ElementRef,
 } from '@angular/core';
@@ -14,7 +13,9 @@ import { InternService } from '../intern.service';
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss'],
 })
+
 export class PopupComponent implements OnInit {
+
   @ViewChild('name') name!: ElementRef;
   @ViewChild('email') email!: ElementRef;
   @ViewChild('surname') surname!: ElementRef;
@@ -25,7 +26,6 @@ export class PopupComponent implements OnInit {
   ngOnInit(): void {}
 
   closePopUp() {
-    console.log('closePopUp');
     this.newItemEvent.emit(false);
   }
 

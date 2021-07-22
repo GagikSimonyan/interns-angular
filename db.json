@@ -1,12 +1,6 @@
 {
   "interns": [
     {
-      "id": 1,
-      "name": "Ashot",
-      "surname": "Sargsyan",
-      "email": "ashotsargsyan@gmail.com"
-    },
-    {
       "id": 2,
       "name": "Eduard",
       "surname": "Manukyan",
@@ -85,28 +79,22 @@
       "id": 14
     },
     {
-      "name": "dsdsdsdsds",
-      "email": "manvel150@gmal.com",
-      "surname": "sasasa",
-      "id": 15
-    },
-    {
-      "name": "Name",
-      "email": "manvel.30@mail.ru",
-      "surname": "Surname",
-      "id": 16
-    },
-    {
-      "name": "ttttttttt",
-      "email": "manvel150@gmal.com",
-      "surname": "ttttttttttttt",
-      "id": 17
-    },
-    {
-      "name": "ttttttttt",
-      "email": "manvel150@gmal.com",
-      "surname": "ttttttttttttt",
+      "name": "Gago ",
+      "email": "gago.simonyan@yandex.ru",
+      "surname": "Simonyan",
       "id": 18
+    },
+    {
+      "name": "Chelsey ",
+      "email": "Lucio_Hettinger@annie.ca",
+      "surname": "Dietrich",
+      "id": 20
+    },
+    {
+      "name": "Mrs. Dennis ",
+      "email": "Lucio_Hettinger@annie.ca",
+      "surname": "Schulist",
+      "id": 22
     }
   ]
 }

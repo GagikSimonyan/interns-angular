@@ -14,6 +14,7 @@ export interface Iintern {
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+
   public showPopup: boolean = false;
 
   public interns: Iintern[] = [];
@@ -27,10 +28,10 @@ export class MainComponent implements OnInit {
     this.internService.addIntern$.subscribe((intern: Iintern) => {
       this.interns.push(intern);
     });
+    // this.internService.deleteIntern(id)
   }
 
   closeAddInternPopUp() {
-    console.log('closeAddInternPopUp');
     this.showPopup = false;
   }
 }
