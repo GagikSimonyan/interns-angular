@@ -5,12 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderModule } from './header/header.module';
-import { MainModule } from './main/main.module';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderModule } from './views/header/header.module';
+import { MainModule } from './views/main/main.module';
+import { FooterComponent } from './views/footer/footer.component';
+import { SearchPipe } from './pipe/search.pipe';
+import { InternService } from './service/intern.service';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent],
+  declarations: [AppComponent, FooterComponent, SearchPipe],
   imports: [
     BrowserModule,
     FormsModule,
@@ -19,7 +21,7 @@ import { FooterComponent } from './footer/footer.component';
     HeaderModule,
     MainModule,
   ],
-  providers: [],
+  providers: [InternService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

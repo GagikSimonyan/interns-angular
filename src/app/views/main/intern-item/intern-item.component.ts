@@ -7,8 +7,8 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { InternService } from 'src/app/service/intern.service';
 import { Iintern } from '../main.component';
-import { InternService } from '../intern.service';
 
 @Component({
   selector: '[app-intern-item]',

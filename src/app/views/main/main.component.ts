@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InternService } from './intern.service';
+import { InternService } from 'src/app/service/intern.service';
 
 export interface Iintern {
   id?: number;
@@ -14,6 +14,7 @@ export interface Iintern {
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  
   public showPopup: boolean = false;
   public editableIntern!: Iintern;
   public interns: Iintern[] = [];

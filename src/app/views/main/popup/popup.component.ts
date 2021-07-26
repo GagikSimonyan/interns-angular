@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { InternService } from '../intern.service';
+import { InternService } from 'src/app/service/intern.service';
 import { Iintern } from '../main.component';
 
 @Component({
@@ -37,7 +37,7 @@ export class PopupComponent implements OnInit {
         this.closePopUp();
       });
     } else {
-      this.internService.addIntern(this.intern).subscribe((intern) => {
+      this.internService.addIntern(this.intern).subscribe(() => {
         this.closePopUp();
       });
     }

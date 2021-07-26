@@ -73,22 +73,16 @@
       "email": "roberthovhannisyan@gmail.com"
     },
     {
-      "name": "Name",
-      "email": "manvel.30@mail.ru",
-      "surname": "Surname",
-      "id": 14
-    },
-    {
-      "name": "Gago ",
+      "name": "Gagik",
       "email": "gago.simonyan@yandex.ru",
       "surname": "Simonyan",
-      "id": 18
+      "id": 14
     },
     {
       "name": "Chelsey ",
       "email": "Lucio_Hettinger@annie.ca",
       "surname": "Dietrich",
-      "id": 20
+      "id": 15
     }
   ]
 }

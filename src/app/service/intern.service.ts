@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Iintern } from './main.component';
 import { Subject } from 'rxjs';
+import { Iintern } from '../views/main/main.component';
 
 @Injectable()
 export class InternService {
@@ -9,13 +9,13 @@ export class InternService {
 
   intern$ = new Subject<Array<Iintern>>();
   interns!: Array<Iintern>;
+  
   constructor(private http: HttpClient) {}
 
-  deleteIntern(id: number) {
-    const request = this.http.delete(`${this.BASE_URL + id}`);
-    request.subscribe(() => {
-      this.interns = this.interns.filter((item) => item.id !== id);
-      this.intern$.next(this.interns);
+  getAllInterns() {
+    const request = this.http.get<Iintern[]>(this.BASE_URL);
+    request.subscribe((interns: Array<Iintern>) => {
+      this.interns = interns;
     });
     return request;
   }
@@ -30,10 +30,7 @@ export class InternService {
   }
 
   updateIntern(intern: Iintern) {
-    const request = this.http.put<Iintern>(
-      `${this.BASE_URL}${intern.id}`,
-      intern
-    );
+    const request = this.http.put<Iintern>(`${this.BASE_URL}${intern.id}`, intern);
     request.subscribe((intern: Iintern) => {
       const index = this.interns.findIndex((item) => item.id === intern.id);
       this.interns[index] = intern;
@@ -42,11 +39,17 @@ export class InternService {
     return request;
   }
 
-  getAllInterns() {
-    const request = this.http.get<Iintern[]>(this.BASE_URL);
-    request.subscribe((interns: Array<Iintern>) => {
-      this.interns = interns;
+  deleteIntern(id: number) {
+    const request = this.http.delete(`${this.BASE_URL + id}`);
+    request.subscribe(() => {
+      this.interns = this.interns.filter((item) => item.id !== id);
+      this.intern$.next(this.interns);
     });
     return request;
+  }
+
+  getInternsBySearch(searchValue: string) {
+    const searchedInterns = this.interns.filter(intern => intern.name.toLowerCase().startsWith(searchValue.toLowerCase()) || intern.surname.toLowerCase().startsWith(searchValue.toLowerCase()));
+    this.intern$.next(searchedInterns);
   }
 }
