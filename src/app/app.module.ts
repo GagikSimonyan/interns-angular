@@ -10,9 +10,17 @@ import { MainModule } from './views/main/main.module';
 import { FooterComponent } from './views/footer/footer.component';
 import { SearchPipe } from './pipe/search.pipe';
 import { InternService } from './service/intern.service';
+import { HomeComponent } from './home/home.component';
+import { AddInternComponent } from './add-intern/add-intern.component';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, SearchPipe],
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    SearchPipe,
+    HomeComponent,
+    AddInternComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
