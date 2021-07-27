@@ -14,7 +14,6 @@ export interface Iintern {
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  
   public showPopup: boolean = false;
   public editableIntern!: Iintern;
   public interns: Iintern[] = [];
@@ -22,9 +21,7 @@ export class MainComponent implements OnInit {
   constructor(private internService: InternService) {}
 
   ngOnInit(): void {
-    this.internService.getAllInterns().subscribe((interns) => {
-      this.interns = interns;
-    });
+    this.internService.getAllInterns();
     this.internService.intern$.subscribe((interns: Array<Iintern>) => {
       this.interns = interns;
     });

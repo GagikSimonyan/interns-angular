@@ -9,13 +9,14 @@ export class InternService {
 
   intern$ = new Subject<Array<Iintern>>();
   interns!: Array<Iintern>;
-  
+
   constructor(private http: HttpClient) {}
 
   getAllInterns() {
     const request = this.http.get<Iintern[]>(this.BASE_URL);
     request.subscribe((interns: Array<Iintern>) => {
       this.interns = interns;
+      this.intern$.next(this.interns);
     });
     return request;
   }
@@ -30,7 +31,10 @@ export class InternService {
   }
 
   updateIntern(intern: Iintern) {
-    const request = this.http.put<Iintern>(`${this.BASE_URL}${intern.id}`, intern);
+    const request = this.http.put<Iintern>(
+      `${this.BASE_URL}${intern.id}`,
+      intern
+    );
     request.subscribe((intern: Iintern) => {
       const index = this.interns.findIndex((item) => item.id === intern.id);
       this.interns[index] = intern;
@@ -48,8 +52,12 @@ export class InternService {
     return request;
   }
 
-  getInternsBySearch(searchValue: string) {
-    const searchedInterns = this.interns.filter(intern => intern.name.toLowerCase().startsWith(searchValue.toLowerCase()) || intern.surname.toLowerCase().startsWith(searchValue.toLowerCase()));
-    this.intern$.next(searchedInterns);
+  getInternsBySearch(interns: Array<Iintern>, searchValue: string) {
+    const searchedInterns = interns.filter(
+      (intern) =>
+        intern.name.toLowerCase().startsWith(searchValue.toLowerCase()) ||
+        intern.surname.toLowerCase().startsWith(searchValue.toLowerCase())
+    );
+    return searchedInterns;
   }
 }

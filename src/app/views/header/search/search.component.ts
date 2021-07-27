@@ -5,22 +5,28 @@ import { Iintern } from '../../main/main.component';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-
   public search: string = '';
-
-  constructor(private internService: InternService) { }
+  private allInterns!: Array<Iintern>;
+  constructor(private internService: InternService) {}
 
   ngOnInit(): void {
-
+    this.internService.intern$.subscribe((interns) => {
+      this.allInterns = interns;
+    });
   }
 
   showInternsBySearchValue() {
     if (this.search.trim()) {
-      this.internService.getInternsBySearch(this.search)
+      const interns = this.internService.getInternsBySearch(
+        JSON.parse(JSON.stringify(this.internService.interns)),
+        this.search
+      );
+      this.internService.intern$.next(interns);
+    } else {
+      this.internService.intern$.next(this.internService.interns);
     }
   }
-
 }
